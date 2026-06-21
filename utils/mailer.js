@@ -1,51 +1,51 @@
-// Nodemailer setup for sending booking notification emails.
-// Requires EMAIL_USER and EMAIL_PASS (Gmail App Password) in .env
+// Email sending for booking notifications, using Resend.
 
-const nodemailer = require('nodemailer');
-
-function createTransporter() {
-  return nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS,
-    },
-    connectionTimeout: 8000, // 8 seconds
-    greetingTimeout: 8000,
-    socketTimeout: 8000,
-  });
-}
+const { Resend } = require('resend');
 
 async function sendBookingEmail(booking) {
-  if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
-    console.error('Email not configured: EMAIL_USER or EMAIL_PASS missing from .env');
+  if (!process.env.RESEND_API_KEY) {
+    console.error('Email not configured: RESEND_API_KEY missing from .env');
+    throw new Error('Email not configured');
+  }
+  if (!process.env.TUTOR_EMAIL) {
+    console.error('Email not configured: TUTOR_EMAIL missing from .env');
     throw new Error('Email not configured');
   }
 
-  const transporter = createTransporter();
+  const resend = new Resend(process.env.RESEND_API_KEY);
 
   const { name, contact, subject, grade, planLabel, date, time, notes } = booking;
 
-  const mailOptions = {
-    from: process.env.EMAIL_USER,
-    to: process.env.TUTOR_EMAIL,
-    replyTo: contact.includes('@') ? contact : undefined,
-    subject: `New booking request: ${name} — ${subject} (Grade ${grade})`,
-    text: [
-      `New booking request from Edu-Edge Academics website`,
-      ``,
-      `Name: ${name}`,
-      `Contact: ${contact}`,
-      `Subject: ${subject}`,
-      `Grade: ${grade}`,
-      `Plan: ${planLabel}`,
-      `Preferred date: ${date}`,
-      `Preferred time: ${time}`,
-      notes ? `Notes: ${notes}` : null,
-    ].filter(Boolean).join('\n'),
-  };
+  const textBody = [
+    `New booking request from Edu-Edge Academics website`,
+    ``,
+    `Name: ${name}`,
+    `Contact: ${contact}`,
+    `Subject: ${subject}`,
+    `Grade: ${grade}`,
+    `Plan: ${planLabel}`,
+    `Preferred date: ${date}`,
+    `Preferred time: ${time}`,
+    notes ? `Notes: ${notes}` : null,
+  ].filter(Boolean).join('\n');
 
-  return transporter.sendMail(mailOptions);
+  // 'onboarding@resend.dev' is Resend's shared test sender - works on the
+  // free tier without needing to verify your own domain. Fine for this use
+  // case since all emails go to your own inbox (TUTOR_EMAIL), not to the public.
+  const { data, error } = await resend.emails.send({
+    from: 'Edu-Edge Academics <onboarding@resend.dev>',
+    to: process.env.TUTOR_EMAIL,
+    reply_to: contact.includes('@') ? contact : undefined,
+    subject: `New booking request: ${name} — ${subject} (Grade ${grade})`,
+    text: textBody,
+  });
+
+  if (error) {
+    console.error('Resend API error:', error.message || error);
+    throw new Error(error.message || 'Failed to send email via Resend');
+  }
+
+  return data;
 }
 
 module.exports = { sendBookingEmail };
