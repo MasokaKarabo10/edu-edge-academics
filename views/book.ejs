@@ -1,0 +1,138 @@
+<%- include('partials/header') %>
+
+<!-- PAGE HEADER -->
+<section class="bg-navy-900 text-white pt-16 pb-12 px-6 text-center">
+  <p class="text-amber-200 text-sm font-medium tracking-widest uppercase mb-3">Book a session</p>
+  <h1 class="font-display text-4xl sm:text-5xl font-bold text-white mb-3">Let's get you booked in</h1>
+  <p class="text-navy-100 max-w-xl mx-auto text-sm sm:text-base">Fill in the details below and choose how you'd like to send your request.</p>
+</section>
+
+<!-- FORM -->
+<section class="py-12 px-6 bg-white">
+  <div class="max-w-xl mx-auto">
+
+    <% if (typeof errors !== 'undefined' && errors.length > 0) { %>
+      <div class="bg-red-50 border border-red-100 rounded-xl p-4 mb-6">
+        <p class="text-red-600 text-sm font-medium mb-1">Please fix the following:</p>
+        <ul class="text-red-500 text-xs list-disc list-inside space-y-1">
+          <% errors.forEach(err => { %>
+            <li><%= err %></li>
+          <% }) %>
+        </ul>
+      </div>
+    <% } %>
+
+    <form id="booking-form" action="/book" method="POST" class="space-y-5" novalidate>
+
+      <!-- Name -->
+      <div>
+        <label for="name" class="block text-sm font-medium text-navy-900 mb-1">Full name <span class="text-amber-400">*</span></label>
+        <input type="text" id="name" name="name" required
+               value="<%= typeof formData !== 'undefined' ? formData.name : '' %>"
+               class="w-full border border-navy-100 rounded-lg px-4 py-2.5 text-sm text-navy-900 focus:outline-none focus:border-navy-600 transition-colors"
+               placeholder="e.g. Lethabo Mokoena" />
+        <p class="error-msg text-red-500 text-xs mt-1 hidden">Please enter your name.</p>
+      </div>
+
+      <!-- Contact -->
+      <div>
+        <label for="contact" class="block text-sm font-medium text-navy-900 mb-1">WhatsApp number or email <span class="text-amber-400">*</span></label>
+        <input type="text" id="contact" name="contact" required
+               value="<%= typeof formData !== 'undefined' ? formData.contact : '' %>"
+               class="w-full border border-navy-100 rounded-lg px-4 py-2.5 text-sm text-navy-900 focus:outline-none focus:border-navy-600 transition-colors"
+               placeholder="e.g. 082 123 4567 or you@email.com" />
+        <p class="error-msg text-red-500 text-xs mt-1 hidden">Please enter a valid phone number or email.</p>
+      </div>
+
+      <!-- Subject + Grade -->
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label for="subject" class="block text-sm font-medium text-navy-900 mb-1">Subject <span class="text-amber-400">*</span></label>
+          <select id="subject" name="subject" required
+                  class="w-full border border-navy-100 rounded-lg px-4 py-2.5 text-sm text-navy-900 focus:outline-none focus:border-navy-600 transition-colors bg-white">
+            <option value="" disabled <%= (typeof formData === 'undefined' || !formData.subject) ? 'selected' : '' %>>Select subject</option>
+            <% const subjects = ['Mathematics','Physical Science','Accounting','English','Afrikaans','CAT']; %>
+            <% subjects.forEach(s => { %>
+              <option value="<%= s %>" <%= (typeof formData !== 'undefined' && formData.subject === s) ? 'selected' : '' %>><%= s %></option>
+            <% }) %>
+          </select>
+          <p class="error-msg text-red-500 text-xs mt-1 hidden">Please select a subject.</p>
+        </div>
+        <div>
+          <label for="grade" class="block text-sm font-medium text-navy-900 mb-1">Grade <span class="text-amber-400">*</span></label>
+          <select id="grade" name="grade" required
+                  class="w-full border border-navy-100 rounded-lg px-4 py-2.5 text-sm text-navy-900 focus:outline-none focus:border-navy-600 transition-colors bg-white">
+            <option value="" disabled <%= (typeof formData === 'undefined' || !formData.grade) ? 'selected' : '' %>>Select grade</option>
+            <% ['8','9','10','11','12'].forEach(g => { %>
+              <option value="<%= g %>" <%= (typeof formData !== 'undefined' && formData.grade === g) ? 'selected' : '' %>>Grade <%= g %></option>
+            <% }) %>
+          </select>
+          <p class="error-msg text-red-500 text-xs mt-1 hidden">Please select a grade.</p>
+        </div>
+      </div>
+
+      <!-- Plan -->
+      <div>
+        <label for="plan" class="block text-sm font-medium text-navy-900 mb-1">Plan <span class="text-amber-400">*</span></label>
+        <select id="plan" name="plan" required
+                class="w-full border border-navy-100 rounded-lg px-4 py-2.5 text-sm text-navy-900 focus:outline-none focus:border-navy-600 transition-colors bg-white">
+          <% const plans = [
+            { value: 'hourly', label: 'Hourly session — R130/hr' },
+            { value: '4-pack', label: '4-session pack — R494 total' },
+            { value: '8-pack', label: '8-session pack — R958 total' },
+            { value: 'group', label: 'Group session — R90/hr each' },
+          ] %>
+          <option value="" disabled <%= (typeof formData === 'undefined' || !formData.plan) ? 'selected' : '' %>>Select a plan</option>
+          <% plans.forEach(p => { %>
+            <option value="<%= p.value %>" <%= (typeof formData !== 'undefined' && formData.plan === p.value) ? 'selected' : '' %>><%= p.label %></option>
+          <% }) %>
+        </select>
+        <p class="error-msg text-red-500 text-xs mt-1 hidden">Please select a plan.</p>
+      </div>
+
+      <!-- Date -->
+      <div>
+        <label for="date" class="block text-sm font-medium text-navy-900 mb-1">Preferred date <span class="text-amber-400">*</span></label>
+        <input type="date" id="date" name="date" required
+               value="<%= typeof formData !== 'undefined' ? formData.date : '' %>"
+               class="w-full border border-navy-100 rounded-lg px-4 py-2.5 text-sm text-navy-900 focus:outline-none focus:border-navy-600 transition-colors" />
+        <p class="text-gray-400 text-xs mt-1">Sessions run Mon–Sat. Sundays are unavailable.</p>
+        <p class="error-msg text-red-500 text-xs mt-1 hidden">Please pick a valid date (not in the past, and not a Sunday).</p>
+      </div>
+
+      <!-- Time slot -->
+      <div>
+        <label for="time" class="block text-sm font-medium text-navy-900 mb-1">Preferred time slot <span class="text-amber-400">*</span></label>
+        <select id="time" name="time" required
+                class="w-full border border-navy-100 rounded-lg px-4 py-2.5 text-sm text-navy-900 focus:outline-none focus:border-navy-600 transition-colors bg-white">
+          <option value="" disabled selected>Select date first</option>
+        </select>
+        <p class="text-gray-400 text-xs mt-1">Mon–Fri: 14:30–19:00 · Sat: 09:30–17:00</p>
+        <p class="error-msg text-red-500 text-xs mt-1 hidden">Please select a time slot.</p>
+      </div>
+
+      <!-- Notes -->
+      <div>
+        <label for="notes" class="block text-sm font-medium text-navy-900 mb-1">Anything else? (optional)</label>
+        <textarea id="notes" name="notes" rows="3"
+                  class="w-full border border-navy-100 rounded-lg px-4 py-2.5 text-sm text-navy-900 focus:outline-none focus:border-navy-600 transition-colors resize-none"
+                  placeholder="e.g. struggling with trigonometry, or this is for two siblings"><%= typeof formData !== 'undefined' ? formData.notes : '' %></textarea>
+      </div>
+
+      <!-- Send -->
+      <div class="bg-navy-50 rounded-xl p-4">
+        <button type="submit" name="sendVia" value="email"
+                class="w-full bg-navy-600 text-white px-4 py-2.5 rounded-lg text-sm font-medium hover:bg-navy-800 transition-colors flex items-center justify-center gap-2">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          Send booking request
+        </button>
+        <p class="text-gray-400 text-xs text-center mt-2">We'll email you back to confirm — or message <a href="https://wa.me/27670517017" target="_blank" class="text-navy-600 underline">067 051 7017</a> directly if you'd rather chat.</p>
+      </div>
+
+    </form>
+  </div>
+</section>
+
+<%- include('partials/footer') %>
+
+<script src="/js/booking.js"></script>

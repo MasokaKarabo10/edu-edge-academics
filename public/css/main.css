@@ -1,0 +1,40 @@
+/* Edu-Edge Academics – custom styles (Tailwind handles the rest) */
+
+/* Smooth scroll */
+html { scroll-behavior: smooth; }
+
+/* Hero subject selector pill active state */
+.subject-pill.active {
+  background-color: #185FA5;
+  color: #E6F1FB;
+  border-color: #185FA5;
+}
+
+/* Grade pill active state */
+.grade-pill.active {
+  background-color: #BA7517;
+  color: #FAEEDA;
+  border-color: #BA7517;
+}
+
+/* Fade-in on scroll */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Focus ring */
+a:focus-visible, button:focus-visible {
+  outline: 2px solid #BA7517;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+}

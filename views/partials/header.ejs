@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= title %></title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: {
+              50:  '#E6F1FB',
+              100: '#B5D4F4',
+              200: '#85B7EB',
+              400: '#378ADD',
+              600: '#185FA5',
+              800: '#0C447C',
+              900: '#042C53',
+            },
+            amber: {
+              50:  '#FAEEDA',
+              100: '#FAC775',
+              200: '#EF9F27',
+              400: '#BA7517',
+              600: '#854F0B',
+              800: '#633806',
+              900: '#412402',
+            },
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            display: ['Georgia', 'serif'],
+          },
+        },
+      },
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css" />
+</head>
+<body class="bg-white text-gray-900 font-sans">
+
+<nav class="sticky top-0 z-50 bg-navy-900 border-b border-navy-800">
+  <div class="max-w-6xl mx-auto px-6 flex items-center justify-between h-16">
+    <a href="/" class="flex items-center gap-2 shrink-0">
+      <span class="text-amber-200 font-display font-bold text-xl tracking-tight">Edu-Edge</span>
+      <span class="text-navy-100 text-sm font-medium hidden lg:inline">Academics</span>
+    </a>
+    <button id="menu-toggle" class="lg:hidden text-navy-100 focus:outline-none" aria-label="Toggle menu">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+      </svg>
+    </button>
+    <ul id="nav-links" class="hidden lg:flex items-center gap-5 text-sm text-navy-100">
+      <li><a href="/" class="hover:text-amber-200 transition-colors whitespace-nowrap">Home</a></li>
+      <li><a href="/about" class="hover:text-amber-200 transition-colors whitespace-nowrap">About</a></li>
+      <li><a href="/subjects" class="hover:text-amber-200 transition-colors whitespace-nowrap">Subjects</a></li>
+      <li><a href="/testimonials" class="hover:text-amber-200 transition-colors whitespace-nowrap">Testimonials</a></li>
+      <li><a href="/pricing" class="hover:text-amber-200 transition-colors whitespace-nowrap">Pricing</a></li>
+      <li><a href="/contact" class="hover:text-amber-200 transition-colors whitespace-nowrap">Contact</a></li>
+      <li>
+        <a href="/book" class="bg-amber-200 text-amber-900 px-4 py-2 rounded-md text-sm font-medium hover:bg-amber-100 transition-colors whitespace-nowrap">
+          Book a session
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div id="mobile-menu" class="hidden lg:hidden bg-navy-900 border-t border-navy-800 px-6 pb-4">
+    <ul class="flex flex-col gap-3 pt-3 text-sm text-navy-100">
+      <li><a href="/" class="block hover:text-amber-200 transition-colors">Home</a></li>
+      <li><a href="/about" class="block hover:text-amber-200 transition-colors">About</a></li>
+      <li><a href="/subjects" class="block hover:text-amber-200 transition-colors">Subjects</a></li>
+      <li><a href="/testimonials" class="block hover:text-amber-200 transition-colors">Testimonials</a></li>
+      <li><a href="/pricing" class="block hover:text-amber-200 transition-colors">Pricing</a></li>
+      <li><a href="/contact" class="block hover:text-amber-200 transition-colors">Contact</a></li>
+      <li><a href="/book" class="block bg-amber-200 text-amber-900 px-4 py-2 rounded-md font-medium text-center hover:bg-amber-100 transition-colors">Book a session</a></li>
+    </ul>
+  </div>
+</nav>

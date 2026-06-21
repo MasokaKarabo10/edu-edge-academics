@@ -1,0 +1,90 @@
+<%- include('partials/header') %>
+
+<!-- PAGE HEADER -->
+<section class="bg-navy-900 text-white pt-16 pb-16 px-6 text-center">
+  <p class="text-amber-200 text-sm font-medium tracking-widest uppercase mb-3">About</p>
+  <h1 class="font-display text-4xl sm:text-5xl font-bold text-white mb-3">Hi, I'm Karabo</h1>
+  <p class="text-navy-100 max-w-xl mx-auto text-sm sm:text-base">The person behind Edu-Edge Academics — and the one you'll actually be working with.</p>
+</section>
+
+<!-- BIO -->
+<section class="py-16 px-6 bg-white">
+  <div class="max-w-3xl mx-auto">
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 items-start mb-12 reveal">
+      <!-- Photo placeholder -->
+      <div class="sm:col-span-1">
+        <img src="/karabo.jpeg" alt="Karabo Masoka — Edu-Edge Academics tutor"
+             class="w-full aspect-square object-cover object-top rounded-2xl border border-navy-100" />
+      </div>
+
+      <!-- Story -->
+      <div class="sm:col-span-2 space-y-4 text-gray-600 text-sm leading-relaxed">
+        <p>
+          I started tutoring back in 2024, mostly by accident — a friend's younger sibling needed help with Grade 11 Maths, and what was meant to be a one-off favour turned into something I genuinely looked forward to every week. Since then, I worked for a friend's tutoring company helping out different students one at a time. Watching a concept finally "click" for someone, after they'd spent months convinced they just "weren't a Maths person", is honestly one of the best feelings.
+        </p>
+        <p>
+          Since then I've worked with students across Grades 8–12 in Mathematics, Physical Sciences, Accounting, and a few other subjects — helping them not just pass, but actually understand <em>why</em> the methods work the way they do.
+        </p>
+        <p>
+          I'm currently in my third year studying Computer Science, which might seem unrelated — but it's actually shaped how I teach. CS trains you to break big, intimidating problems into small, logical steps. That's exactly the approach I bring to a tricky trig identity or a balance sheet that just won't balance: we don't memorise, we figure out the logic together, so it sticks.
+        </p>
+        <p>
+          Edu-Edge Academics is me trying to make that approach available to more students — structured, affordable, and online, so distance and timing are never the reason someone falls behind.
+        </p>
+      </div>
+    </div>
+
+    <!-- Quick facts -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 reveal">
+      <div class="bg-navy-50 rounded-xl p-5 text-center">
+        <p class="font-display text-2xl font-bold text-navy-900 mb-1">2024</p>
+        <p class="text-gray-500 text-xs">Tutoring since</p>
+      </div>
+      <div class="bg-navy-50 rounded-xl p-5 text-center">
+        <p class="font-display text-2xl font-bold text-navy-900 mb-1">Grades 8–12</p>
+        <p class="text-gray-500 text-xs">CAPS curriculum</p>
+      </div>
+      <div class="bg-amber-50 rounded-xl p-5 text-center">
+        <p class="font-display text-2xl font-bold text-navy-900 mb-1">3rd Year</p>
+        <p class="text-gray-500 text-xs">BSc Computer Science</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEACHING PHILOSOPHY -->
+<section class="bg-navy-50 py-16 px-6">
+  <div class="max-w-3xl mx-auto reveal">
+    <p class="text-center text-amber-400 text-sm font-medium tracking-widest uppercase mb-2">How I teach</p>
+    <h2 class="font-display text-3xl font-bold text-navy-900 text-center mb-10">It's not about more answers</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+      <div class="bg-white rounded-2xl p-6 border border-navy-100">
+        <h3 class="font-semibold text-navy-900 mb-2">Diagnose first</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">Most "I don't get Maths" problems are actually one or two specific gaps from a previous grade. We find those first.</p>
+      </div>
+      <div class="bg-white rounded-2xl p-6 border border-navy-100">
+        <h3 class="font-semibold text-navy-900 mb-2">Build from logic</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">Formulas make a lot more sense once you know where they come from. We connect the dots, not just memorise steps.</p>
+      </div>
+      <div class="bg-white rounded-2xl p-6 border border-navy-100">
+        <h3 class="font-semibold text-navy-900 mb-2">Practice that mirrors exams</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">We work through past paper style questions so test day feels familiar, not foreign.</p>
+      </div>
+      <div class="bg-white rounded-2xl p-6 border border-navy-100">
+        <h3 class="font-semibold text-navy-900 mb-2">No judgement, ever</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">There's no such thing as a "stupid question". If something isn't clicking, we slow down until it does.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="py-20 px-6 bg-white text-center">
+  <div class="max-w-xl mx-auto reveal">
+    <h2 class="font-display text-3xl font-bold text-navy-900 mb-4">Let's work on it together</h2>
+    <p class="text-gray-500 text-sm mb-8">Book a session and let's figure out where to start.</p>
+    <a href="/book" class="inline-block bg-navy-600 text-white px-6 py-3 rounded-lg text-sm font-medium hover:bg-navy-800 transition-colors">Book a session</a>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

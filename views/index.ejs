@@ -1,0 +1,180 @@
+<%- include('partials/header') %>
+
+<!-- HERO -->
+<section class="bg-navy-900 text-white pt-16 pb-20 px-6">
+  <div class="max-w-4xl mx-auto text-center">
+    <p class="text-amber-200 text-sm font-medium tracking-widest uppercase mb-4">Online tutoring · Grades 8–12 · CAPS aligned</p>
+    <h1 class="font-display text-4xl sm:text-5xl font-bold text-white leading-tight mb-4">
+      The edge you need<br class="hidden sm:block"/> to pass with confidence
+    </h1>
+    <p class="text-navy-100 text-lg max-w-xl mx-auto mb-10">
+      One-on-one online sessions in Maths, Physical Science, Accounting and more — with a tutor who actually explains the <em>why</em>.
+    </p>
+
+    <!-- Subject + grade selector -->
+    <div class="bg-navy-800 rounded-2xl p-6 max-w-2xl mx-auto text-left">
+      <p class="text-navy-50 text-sm font-medium mb-3">Pick your subject</p>
+      <div class="flex flex-wrap gap-2 mb-5">
+        <button class="subject-pill border border-navy-400 text-navy-100 text-sm px-4 py-2 rounded-full transition-colors hover:border-navy-200" data-subject="Mathematics">Mathematics</button>
+        <button class="subject-pill border border-navy-400 text-navy-100 text-sm px-4 py-2 rounded-full transition-colors hover:border-navy-200" data-subject="Physical Science">Physical Science</button>
+        <button class="subject-pill border border-navy-400 text-navy-100 text-sm px-4 py-2 rounded-full transition-colors hover:border-navy-200" data-subject="Accounting">Accounting</button>
+        <button class="subject-pill border border-navy-400 text-navy-100 text-sm px-4 py-2 rounded-full transition-colors hover:border-navy-200" data-subject="English">English</button>
+        <button class="subject-pill border border-navy-400 text-navy-100 text-sm px-4 py-2 rounded-full transition-colors hover:border-navy-200" data-subject="Afrikaans">Afrikaans</button>
+        <button class="subject-pill border border-navy-400 text-navy-100 text-sm px-4 py-2 rounded-full transition-colors hover:border-navy-200" data-subject="CAT">CAT</button>
+      </div>
+      <p class="text-navy-50 text-sm font-medium mb-3">Pick your grade</p>
+      <div class="flex flex-wrap gap-2 mb-6">
+        <% ['8','9','10','11','12'].forEach(g => { %>
+          <button class="grade-pill border border-navy-400 text-navy-100 text-sm px-4 py-2 rounded-full transition-colors hover:border-navy-200" data-grade="<%= g %>">Grade <%= g %></button>
+        <% }) %>
+      </div>
+      <a id="hero-book-btn" href="/book"
+         class="block w-full text-center bg-amber-200 text-amber-900 font-medium px-6 py-3 rounded-lg transition-colors opacity-50 cursor-not-allowed text-sm">
+        Select a subject and grade
+      </a>
+    </div>
+
+    <p class="text-navy-100 text-xs mt-4">Mon–Fri 14:30–19:00 &nbsp;·&nbsp; Sat 09:30–17:00 &nbsp;·&nbsp; R130/hr per student</p>
+  </div>
+</section>
+
+<!-- WHY EDU-EDGE -->
+<section class="py-20 px-6 bg-white">
+  <div class="max-w-5xl mx-auto">
+    <div class="text-center mb-12 reveal">
+      <p class="text-amber-400 text-sm font-medium tracking-widest uppercase mb-2">Why students choose us</p>
+      <h2 class="font-display text-3xl font-bold text-navy-900">More than just answers</h2>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-8">
+      <div class="reveal text-center px-4">
+        <div class="w-12 h-12 bg-navy-50 rounded-full flex items-center justify-center mx-auto mb-4">
+          <svg class="w-6 h-6 text-navy-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+          </svg>
+        </div>
+        <h3 class="font-semibold text-navy-900 mb-2">Concepts, not shortcuts</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">We work through the logic so you can handle any question the exam throws at you — not just the ones you've seen before.</p>
+      </div>
+      <div class="reveal text-center px-4" style="transition-delay:0.1s">
+        <div class="w-12 h-12 bg-amber-50 rounded-full flex items-center justify-center mx-auto mb-4">
+          <svg class="w-6 h-6 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+          </svg>
+        </div>
+        <h3 class="font-semibold text-navy-900 mb-2">One-on-one attention</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">Every session is tailored to you — your pace, your problem areas, your goals. No classroom of 35 to compete with.</p>
+      </div>
+      <div class="reveal text-center px-4" style="transition-delay:0.2s">
+        <div class="w-12 h-12 bg-navy-50 rounded-full flex items-center justify-center mx-auto mb-4">
+          <svg class="w-6 h-6 text-navy-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
+          </svg>
+        </div>
+        <h3 class="font-semibold text-navy-900 mb-2">CAPS-aligned sessions</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">Every lesson follows the South African CAPS curriculum, so what we cover maps directly to what your school and exams expect.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SUBJECTS STRIP -->
+<section class="bg-navy-50 py-16 px-6">
+  <div class="max-w-5xl mx-auto reveal">
+    <p class="text-center text-amber-400 text-sm font-medium tracking-widest uppercase mb-8">Subjects offered</p>
+    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+      <% const subjects = [
+        { name: 'Mathematics', icon: '∑', desc: 'Gr 8–12' },
+        { name: 'Physical Science', icon: '⚛', desc: 'Gr 10–12' },
+        { name: 'Accounting', icon: '₿', desc: 'Gr 8–12' },
+        { name: 'English', icon: 'Aa', desc: 'Gr 8–12' },
+        { name: 'Afrikaans', icon: 'Aa', desc: 'Gr 8–12' },
+        { name: 'CAT', icon: '⌨', desc: 'Gr 10–12' },
+      ] %>
+      <% subjects.forEach(s => { %>
+        <a href="/subjects" class="bg-white border border-navy-100 rounded-xl p-4 flex items-center gap-3 hover:border-navy-400 transition-colors group">
+          <span class="text-2xl text-navy-600 group-hover:text-amber-400 transition-colors font-display"><%= s.icon %></span>
+          <div>
+            <p class="text-navy-900 font-medium text-sm"><%= s.name %></p>
+            <p class="text-gray-400 text-xs"><%= s.desc %></p>
+          </div>
+        </a>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL PREVIEW -->
+<section class="py-20 px-6 bg-white">
+  <div class="max-w-4xl mx-auto text-center reveal">
+    <p class="text-amber-400 text-sm font-medium tracking-widest uppercase mb-2">What students say</p>
+    <h2 class="font-display text-3xl font-bold text-navy-900 mb-10">Results that speak</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 text-left">
+      <div class="bg-navy-50 rounded-2xl p-6 border border-navy-100">
+        <p class="text-navy-900 text-sm leading-relaxed mb-4">"I was failing Maths in grade 11 and genuinely thought I'd have to drop it. After a few sessions I actually started understanding what was happening. Passed with a 68%."</p>
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-full bg-navy-200 flex items-center justify-center text-navy-800 text-xs font-bold">LM</div>
+          <div>
+            <p class="text-navy-900 text-xs font-medium">Lethabo M.</p>
+            <p class="text-gray-400 text-xs">Grade 11 · Mathematics</p>
+          </div>
+        </div>
+      </div>
+      <div class="bg-amber-50 rounded-2xl p-6 border border-amber-100">
+        <p class="text-navy-900 text-sm leading-relaxed mb-4">"Physical Science used to stress me out so much. The way it gets broken down here just made things click. My marks went from 42% to 71% in one term."</p>
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-full bg-amber-200 flex items-center justify-center text-amber-800 text-xs font-bold">SK</div>
+          <div>
+            <p class="text-navy-900 text-xs font-medium">Siyanda K.</p>
+            <p class="text-gray-400 text-xs">Grade 12 · Physical Science</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <a href="/testimonials" class="inline-block mt-8 text-navy-600 text-sm font-medium hover:text-amber-400 transition-colors">
+      Read all testimonials →
+    </a>
+  </div>
+</section>
+
+<!-- SCHEDULE + PRICING STRIP -->
+<section class="bg-navy-900 text-white py-16 px-6">
+  <div class="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-10 items-center reveal">
+    <div>
+      <p class="text-amber-200 text-sm font-medium tracking-widest uppercase mb-3">Session hours</p>
+      <div class="space-y-2 text-navy-100 text-sm">
+        <div class="flex justify-between border-b border-navy-800 pb-2">
+          <span>Monday – Friday</span>
+          <span class="text-white font-medium">14:30 – 19:00</span>
+        </div>
+        <div class="flex justify-between border-b border-navy-800 pb-2">
+          <span>Saturday</span>
+          <span class="text-white font-medium">09:30 – 17:00</span>
+        </div>
+        <div class="flex justify-between">
+          <span>Sunday</span>
+          <span class="text-navy-100">Closed</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <p class="text-amber-200 text-sm font-medium tracking-widest uppercase mb-3">Rate</p>
+      <p class="text-4xl font-display font-bold text-white mb-1">R130 <span class="text-lg text-navy-100 font-normal">/ hour</span></p>
+      <p class="text-navy-100 text-sm mb-5">Per student, per session. No hidden fees.</p>
+      <a href="/pricing" class="text-amber-200 text-sm font-medium hover:text-amber-100 transition-colors">View all pricing →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="py-20 px-6 bg-white text-center">
+  <div class="max-w-xl mx-auto reveal">
+    <h2 class="font-display text-3xl font-bold text-navy-900 mb-4">Ready to turn things around?</h2>
+    <p class="text-gray-500 text-sm mb-8">Book your first session today. No commitment — just one session to see if it works for you.</p>
+    <div class="flex flex-col sm:flex-row gap-3 justify-center">
+      <a href="/book" class="bg-navy-600 text-white px-6 py-3 rounded-lg text-sm font-medium hover:bg-navy-800 transition-colors">Book a session</a>
+      <a href="https://wa.me/27670517017" target="_blank" class="border border-navy-200 text-navy-700 px-6 py-3 rounded-lg text-sm font-medium hover:border-navy-600 transition-colors">Chat on WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/footer') %>
