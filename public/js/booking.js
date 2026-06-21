@@ -6,15 +6,44 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const dateInput = document.getElementById('date');
   const timeSelect = document.getElementById('time');
+  const gradeSelect = document.getElementById('grade');
+  const subjectSelect = document.getElementById('subject');
 
   // Time slots by day type
   const WEEKDAY_SLOTS = ['14:30', '15:30', '16:30', '17:30', '18:00'];
   const SATURDAY_SLOTS = ['09:30', '10:30', '11:30', '13:00', '14:00', '15:00', '16:00'];
 
+  // Subjects only available from Grade 10 onwards
+  const GRADE_10_PLUS_ONLY = ['Physical Science', 'CAT'];
+
   // Restrict date input: no past dates
   const today = new Date();
   const todayStr = today.toISOString().split('T')[0];
   dateInput.setAttribute('min', todayStr);
+
+  function updateSubjectOptions() {
+    const grade = gradeSelect.value;
+    const isUnder10 = grade === '8' || grade === '9';
+
+    Array.from(subjectSelect.options).forEach(opt => {
+      if (!opt.value) return; // skip the placeholder option
+      const restricted = GRADE_10_PLUS_ONLY.includes(opt.value);
+      opt.disabled = restricted && isUnder10;
+      opt.textContent = (restricted && isUnder10)
+        ? `${opt.value} (Grade 10+ only)`
+        : opt.value;
+    });
+
+    // If the currently selected subject just became invalid, reset it
+    const selectedOpt = subjectSelect.options[subjectSelect.selectedIndex];
+    if (selectedOpt && selectedOpt.disabled) {
+      subjectSelect.value = '';
+    }
+  }
+
+  gradeSelect.addEventListener('change', updateSubjectOptions);
+  // Run once on load too, in case a grade was pre-filled (e.g. validation error redisplay)
+  if (gradeSelect.value) updateSubjectOptions();
 
   async function fetchTakenSlots(dateStr) {
   try {

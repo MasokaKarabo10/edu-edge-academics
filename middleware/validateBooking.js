@@ -3,6 +3,7 @@
 
 const SUBJECTS = ['Mathematics', 'Physical Science', 'Accounting', 'English', 'Afrikaans', 'CAT'];
 const GRADES = ['8', '9', '10', '11', '12'];
+const GRADE_10_PLUS_ONLY = ['Physical Science', 'CAT'];
 const PLANS = ['hourly', '4-pack', '8-pack', 'group'];
 
 const PLAN_LABELS = {
@@ -33,6 +34,11 @@ function validateBooking(req, res, next) {
 
   if (!grade || !GRADES.includes(grade)) {
     errors.push('Please select a valid grade.');
+  }
+
+  // Physical Science and CAT only exist in CAPS from Grade 10 onwards
+  if (subject && grade && GRADE_10_PLUS_ONLY.includes(subject) && (grade === '8' || grade === '9')) {
+    errors.push(`${subject} is only available from Grade 10 onwards.`);
   }
 
   if (!plan || !PLANS.includes(plan)) {
