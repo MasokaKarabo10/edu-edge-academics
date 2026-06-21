@@ -14,11 +14,32 @@ const subjectPills = document.querySelectorAll('.subject-pill');
 const gradePills = document.querySelectorAll('.grade-pill');
 const bookBtn = document.getElementById('hero-book-btn');
 
+// Subjects only available from Grade 10 onwards (matches CAPS curriculum)
+const GRADE_10_PLUS_ONLY = ['Physical Science', 'CAT'];
+
 let selectedSubject = null;
 let selectedGrade = null;
 
+function isInvalidCombo() {
+  return (
+    selectedSubject &&
+    selectedGrade &&
+    GRADE_10_PLUS_ONLY.includes(selectedSubject) &&
+    (selectedGrade === '8' || selectedGrade === '9')
+  );
+}
+
 function updateBookBtn() {
   if (!bookBtn) return;
+
+  if (isInvalidCombo()) {
+    bookBtn.removeAttribute('href');
+    bookBtn.classList.add('opacity-50', 'cursor-not-allowed');
+    bookBtn.classList.remove('hover:bg-amber-100');
+    bookBtn.textContent = `${selectedSubject} is only offered from Grade 10`;
+    return;
+  }
+
   if (selectedSubject && selectedGrade) {
     bookBtn.href = `/book?subject=${encodeURIComponent(selectedSubject)}&grade=${encodeURIComponent(selectedGrade)}`;
     bookBtn.classList.remove('opacity-50', 'cursor-not-allowed');
